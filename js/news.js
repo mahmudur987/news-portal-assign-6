@@ -29,6 +29,12 @@ const loadNewsDetails = (category_id) => {
 
 }
 const displayNewses = (newses) => {
+
+    // news number area 
+    const newsNumberField = document.getElementById('Textarea1');
+    newsNumberField.innerText = newses.length + ' ' + 'news are showing';
+
+
     const displayContainer = document.getElementById('display-details');
     displayContainer.textContent = '';
     newses.forEach(news => {
@@ -93,7 +99,7 @@ const displayNewses = (newses) => {
 
 
 
-    // console.log(newses);
+    console.log(newses);
 }
 loadNewsDetails('03');
 
