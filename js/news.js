@@ -14,11 +14,9 @@ const displayNews = (elements) => {
         <button onclick="loadNewsDetails('${element.category_id}')" class="btn btn-light ">${element.category_name}</button>
         `;
         catagoryField.appendChild(categoriyDiv);
-
-        // console.log(element)
     });
 }
-loadNews();
+loadNews('01');
 
 const loadNewsDetails = (category_id) => {
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`
@@ -26,7 +24,6 @@ const loadNewsDetails = (category_id) => {
         .then(res => res.json())
         .then(data => displayNewses(data.data))
         .catch(error => console.log(error))
-
 }
 const displayNewses = (newses) => {
 
@@ -47,14 +44,14 @@ const displayNewses = (newses) => {
         todaysPic.classList.remove('bg-info');
 
     }
-    console.log(condition);
-
-
+    const myarray = newses;
+    const moreView = myarray.sort((a, b) => b.total_view - a.total_view);
+    console.log(moreView)
 
 
     const displayContainer = document.getElementById('display-details');
     displayContainer.textContent = '';
-    newses.forEach(news => {
+    moreView.forEach(news => {
 
 
         const newsDiv = document.createElement('div');
@@ -108,16 +105,10 @@ const displayNewses = (newses) => {
             </div>
         </div>
     </div>
-
-       
-        `;
+   `;
         displayContainer.appendChild(newsDiv);
 
-    });
-
-
-
-    console.log(newses);
+    });// console.log(newses);
 }
 loadNewsDetails('03');
 
@@ -147,4 +138,8 @@ const displayModalDetails = (objects) => {
 document.getElementById('navbar-news').addEventListener('click', function () {
     loadNewsDetails('08')
 
+});
+
+document.getElementById('btn-blog').addEventListener('click', function () {
+    window.open('answer.html', '_blank')
 })

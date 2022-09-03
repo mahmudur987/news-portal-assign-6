@@ -14,15 +14,16 @@
     <header>
         <!-- navbar section  start -->
 
-        <section class="container">
+        <section class="container mt-5">
             <nav class="navbar bg-light">
                 <div class="container-fluid ">
-                    <div><a class="navbar-brand  fw-bold"> <span class=" bg-info text-light  fw-bold ">NEWS</span> OF
+                    <div><a class="navbar-brand  fw-bold"> <span class=" bg-info text-light fs-1 fw-bold ">NEWS</span>
+                            OF
                             NATION</a></div>
                     <div class="d-flex justify-content-end " role="search">
                         <button id="navbar-news" class="btn btn-light m-4 h-25">News</button>
                         <!-- <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search"> -->
-                        <button class="btn btn-light m-4 h-25" type="submit">BLOG</button>
+                        <button id="btn-blog" class="btn btn-light m-4 h-25" type="submit">BLOG</button>
                         <img class="img-fluid rounded float-end w-25 h-25" src="image/player-1.png" alt="">
                     </div>
                 </div>
@@ -58,10 +59,13 @@
         <!-- news  number section end -->
 
         <!-- sort and trend div section start -->
-        <section class="container  d-flex justify-content-between">
-            <div id="sort">
-                <div>item-1</div>
-                <div>item-2</div>
+
+        <section class="container d-sm-grid  d-md-flex justify-content-between">
+            <div class="d-flex" id="sort">
+                <div class=" p-3 mx-1 fs-5 fw-bolder border border border-2 bg-white rounded-3">Sort By view :
+                </div>
+                <div class="p-3 fs-5 fw-bolder border border border-2 bg-success bg-opacity-10 rounded-3"> Defult <i
+                        class="fa-solid fa-sort-down mx-2 pb-3"></i></div>
             </div>
             <div class="d-flex">
                 <div id="todays-pic" class="fs-3 fw-bolder border border-lg m-2 p-2 rounded-3">Today's Pic</div>
