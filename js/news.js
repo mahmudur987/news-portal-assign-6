@@ -80,16 +80,16 @@ const displayNewses = (newses) => {
                         <p class="card-text">${news.details.length > 300 ? news.details.slice(0, 300) + '. . . . ' : news.details}</p>
                     </div>
 
-                    <div class="d-flex justify-content-between align-items-end mb-0 mt-5 ">
-                        <div class=" d-flex me-2">
+                    <div class="d-flex justify-content-between align-items-end flex-column flex-md-row mb-0 mt-5  ">
+                        <div class=" d-flex me-2 ">
                          <div class="mx-1 ">   <img style="height: 75%;width:50%;" class="img-fluid mx-5 border rounded-circle" src="${news.author.img ? news.author.img : 'no image'}" alt=""></div>
-                            <div> 
+                            <div class=""> 
                             <h6>authors name ${news.author.name ? news.author.name : 'no name'}</h6>
                             <h6>publishd${news.author.published_date ? news.author.published_date : 'no date'}</h6>
                             </div>
                         </div>
 
-                        <div class="w-100  mx-2"><i class="fa-solid fa-eye"></i>
+                        <div class="w-100 mx-2"><i class="fa-solid fa-eye"></i>
                         <span> ${news.total_view ? news.total_view : 'no data found'}</span>
                         </div>
                         <div class="w-100  mx-2">
