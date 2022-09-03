@@ -16,7 +16,7 @@ const displayNews = (elements) => {
         catagoryField.appendChild(categoriyDiv);
     });
 }
-loadNews('01');
+
 
 const loadNewsDetails = (category_id) => {
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`
@@ -47,7 +47,7 @@ const displayNewses = (newses) => {
     }
     const displaySection = document.getElementById('displaySection')
     if (newses.length == 0) {
-        DisplaySpiner(false);
+
         displaySection.classList.add('d-none')
         return;
     }
@@ -80,7 +80,7 @@ const displayNewses = (newses) => {
                         <p class="card-text">${news.details.length > 300 ? news.details.slice(0, 300) + '. . . . ' : news.details}</p>
                     </div>
 
-                    <div class="d-flex justify-content-between align-items-end flex-column flex-md-row mb-0 mt-5  ">
+                    <div class="d-flex justify-content-between align-items-end flex-column flex-sm-column flex-md-row mb-0 mt-5  ">
                         <div class=" d-flex me-2 ">
                          <div class="mx-1 ">   <img style="height: 75%;width:50%;" class="img-fluid mx-5 border rounded-circle" src="${news.author.img ? news.author.img : 'no image'}" alt=""></div>
                             <div class=""> 
@@ -125,7 +125,7 @@ const displayNewses = (newses) => {
 
 
 }
-loadNewsDetails('03');
+// loadNewsDetails('03');
 
 const loadModaldetails = (news_id) => {
     const url = ` https://openapi.programming-hero.com/api/news/${news_id}`;
@@ -147,7 +147,7 @@ const displayModalDetails = (objects) => {
     `;
 
 
-    console.log(objects)
+    // console.log(objects)
 }
 
 document.getElementById('navbar-news').addEventListener('click', function () {
@@ -166,5 +166,6 @@ const DisplaySpiner = load => {
     } else {
         spinerField.classList.add('d-none')
     }
-
 }
+loadNews();
+loadNewsDetails('03')
