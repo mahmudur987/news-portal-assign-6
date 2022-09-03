@@ -25,6 +25,8 @@ const loadNewsDetails = (category_id) => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayNewses(data.data))
+        .catch(error => console.log(error))
+
 }
 const displayNewses = (newses) => {
     const displayContainer = document.getElementById('display-details');
@@ -69,7 +71,7 @@ const displayNewses = (newses) => {
 
                         <div type="button" data-bs-toggle="modal" data-bs-target="#newsModal"
                             class="w-100  fw-bold mx-2 text-end">
-                            <button onclick="" class="btn btn-light ">
+                            <button onclick="loadModaldetails('${news._id}')" class="btn btn-light ">
                                 <i class="fa-solid fa-arrow-right">
 
                                 </i>
@@ -85,12 +87,40 @@ const displayNewses = (newses) => {
        
         `;
         displayContainer.appendChild(newsDiv);
-        console.log(news);
+        // console.log(news);
 
     });
 
 
 
-    console.log(newses);
+    // console.log(newses);
 }
-// loadNewsDetails('03');
+loadNewsDetails('03');
+
+const loadModaldetails = (news_id) => {
+    const url = ` https://openapi.programming-hero.com/api/news/${news_id}`;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayModalDetails(data.data[0]))
+        .catch(error => console.log(error))
+}
+const displayModalDetails = (objects) => {
+    const modalTitle = document.getElementById('newsModalLabel');
+    modalTitle.innerText = objects.title;
+    const modalBody = document.getElementById('Modal-body');
+    modalBody.textContent = '';
+    modalBody.innerHTML = `
+    <h6>${objects.author.published_date}</h6>
+    <p>${objects.details}</p>
+    
+    
+    `;
+
+
+    console.log(objects)
+}
+
+document.getElementById('navbar-news').addEventListener('click', function () {
+    loadNewsDetails('08')
+
+})
