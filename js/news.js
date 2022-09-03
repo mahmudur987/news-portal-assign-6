@@ -26,13 +26,14 @@ const loadNewsDetails = (category_id) => {
         .catch(error => console.log(error))
 }
 const displayNewses = (newses) => {
+    DisplaySpiner(true);
 
     // news number area 
     const newsNumberField = document.getElementById('Textarea1');
     newsNumberField.innerText = newses.length + ' ' + 'news are showing';
 
     // tranding corner
-    const condition = newses[0].others_info.is_todays_pick;
+    const condition = newses[0] ? newses[0].others_info.is_todays_pick : 0;
     const todaysPic = document.getElementById('todays-pic');
     const tranding = document.getElementById('Tranding');
     if (condition == true) {
@@ -44,16 +45,24 @@ const displayNewses = (newses) => {
         todaysPic.classList.remove('bg-info');
 
     }
+    const displaySection = document.getElementById('displaySection')
+    if (newses.length == 0) {
+        DisplaySpiner(false);
+        displaySection.classList.add('d-none')
+        return;
+    }
+    else {
+        displaySection.classList.remove('d-none')
+
+    }
     const myarray = newses;
     const moreView = myarray.sort((a, b) => b.total_view - a.total_view);
-    console.log(moreView)
+    // console.log(moreView)
 
 
     const displayContainer = document.getElementById('display-details');
-    displayContainer.textContent = '';
+    displayContainer.innerHTML = '';
     moreView.forEach(news => {
-
-
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('col-12');
         newsDiv.innerHTML = `
@@ -72,16 +81,18 @@ const displayNewses = (newses) => {
                     </div>
 
                     <div class="d-flex justify-content-between align-items-end mb-0 mt-5 ">
-                        <div class="w-100  mx-2">
-                            <img class="img-fluid w-25 mx-5" src="${news.author.img ? news.author.img : 'no image'}" alt="">
-                            <p class="text-center">authors name ${news.author.name ? news.author.name : 'no name'}</p>
-                            <p class="text-center">publishd${news.author.published_date ? news.author.published_date : 'no date'}</p>
+                        <div class=" d-flex me-2">
+                         <div class="mx-1 ">   <img style="height: 75%;width:50%;" class="img-fluid mx-5 border rounded-circle" src="${news.author.img ? news.author.img : 'no image'}" alt=""></div>
+                            <div> 
+                            <h6>authors name ${news.author.name ? news.author.name : 'no name'}</h6>
+                            <h6>publishd${news.author.published_date ? news.author.published_date : 'no date'}</h6>
+                            </div>
                         </div>
 
                         <div class="w-100  mx-2"><i class="fa-solid fa-eye"></i>
-                        <span> ${news.total_view ? news.total_view : ''}</span>
+                        <span> ${news.total_view ? news.total_view : 'no data found'}</span>
                         </div>
-                        <div class="w-100  bg-danger mx-2">
+                        <div class="w-100  mx-2">
                             <span class="text-warning">
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
@@ -108,7 +119,11 @@ const displayNewses = (newses) => {
    `;
         displayContainer.appendChild(newsDiv);
 
-    });// console.log(newses);
+    });
+    // console.log(newses);
+    DisplaySpiner(false);
+
+
 }
 loadNewsDetails('03');
 
@@ -143,3 +158,13 @@ document.getElementById('navbar-news').addEventListener('click', function () {
 document.getElementById('btn-blog').addEventListener('click', function () {
     window.open('answer.html', '_blank')
 })
+
+const DisplaySpiner = load => {
+    const spinerField = document.getElementById('spiner')
+    if (load == true) {
+        spinerField.classList.remove('d-none')
+    } else {
+        spinerField.classList.add('d-none')
+    }
+
+}
