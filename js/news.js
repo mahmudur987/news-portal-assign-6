@@ -34,10 +34,29 @@ const displayNewses = (newses) => {
     const newsNumberField = document.getElementById('Textarea1');
     newsNumberField.innerText = newses.length + ' ' + 'news are showing';
 
+    // tranding corner
+    const condition = newses[0].others_info.is_todays_pick;
+    const todaysPic = document.getElementById('todays-pic');
+    const tranding = document.getElementById('Tranding');
+    if (condition == true) {
+        todaysPic.classList.add('bg-info');
+        tranding.classList.remove('bg-info');
+
+    } else {
+        tranding.classList.add('bg-info');
+        todaysPic.classList.remove('bg-info');
+
+    }
+    console.log(condition);
+
+
+
 
     const displayContainer = document.getElementById('display-details');
     displayContainer.textContent = '';
     newses.forEach(news => {
+
+
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('col-12');
         newsDiv.innerHTML = `
@@ -93,7 +112,6 @@ const displayNewses = (newses) => {
        
         `;
         displayContainer.appendChild(newsDiv);
-        // console.log(news);
 
     });
 
